@@ -1,0 +1,24 @@
+{
+  "name": "sas_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "projet_sas2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaymaa-Azhar/SAS_2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/chaymaa-Azhar/SAS_2/issues"
+  },
+  "homepage": "https://github.com/chaymaa-Azhar/SAS_2#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
