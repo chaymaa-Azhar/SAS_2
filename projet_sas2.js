@@ -108,28 +108,7 @@ const candidats = [
 
    for(let i = 0; i < nombre; i++){
         console.log(`--- Candidat ${i + 1} ---`);
-           let cin = prompt('entrer une cin : ');
-           let nom = prompt('entrer nom : ');
-           let prenom = prompt('entrer prenom : ');
-           let partiPolitique = prompt('entrer partiPolitique: ');
-           let age = Number(prompt('entrer une age : '));
-      if(age>18 && age <60){
-           let objet = {
-               cin: cin,
-               nom: nom,
-               prenom: prenom,
-               partiPolitique: partiPolitique,
-               age: age,
-               electeurs: []
-            };
-            candidats.push(objet);
-            console.log(`${i+1} candidats ajoutés avec succès !`);
-
-        }else{
-            console.log(`considats ${i+1} age est Inacceptable `)
-            
-            
-        }
+           Ajouter_seul()
     }
  }
 
@@ -239,6 +218,20 @@ const candidats = [
         }
  }
  
+function rechercher_candidat(){
+    let nom_candidat_rechercher=prompt('entrer nom candidat que tu veux rechercher : ')
+    let trouver = false
+    for(let i=0; i<candidats.length; i++){
+        if(nom_candidat_rechercher === candidats[i].nom)
+           console.log('le candidat que tu veux rechercher est ',candidats[i])
+           trouver= true
+    }
+    if(!trouver){
+        console.log('ce nom est pas trouver ')
+    }
+}
+
+
 
 
 while(true){
