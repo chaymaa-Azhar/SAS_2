@@ -176,11 +176,70 @@ const candidats = [
     }
 }
  }
+ function Voter_candidat(){
+    let cinElecteur=prompt('entrer votre cin : ')
+    for(let i=0; i<candidats.length; i++){
+       if(candidats[i].electeurs.includes(cinElecteur)){
+            console.log(`  Vous avez déjà voté et vous n'avez pas le droit de modifier votre vote ni de voter à nouveau `)
+            return;
+        }
+    }
+    let cin_condidat = prompt('entrer cin condidat tu veux voter : ');
+    let candidatTrouver = candidats.find((candidats )=> candidats.cin === cin_condidat)
+    
+    if(candidatTrouver){
+        candidatTrouver.electeurs.push(cinElecteur)
+        console.log('votre votes succes')
+    }else{
+         console.log('Candidat introuvable.');
+    }
+      
+ }
 
+ function Modifier_condidat(){
+        let cin_candidat =prompt('entrer cin candidat qui tu veux modifier ')
+        let candidat_trouver=candidats.find((candidats)=>(candidats.cin===cin_candidat))
+        if(!candidat_trouver){
+            console.log('cette condidat pas trouver dans les list candidat')
+            return;
+        }
+        console.log(`
+                1. modifier parti politique
+                2.modifier l'age`)
+        let choix = Number(prompt('entrer votre choix : '))
+           if(choix===1){
+                if(candidat_trouver){
+                    let nouveau_patipolitique =prompt('entrer nouvelle parti politique')
+                    candidat_trouver.partiPolitique = nouveau_patipolitique
+                    console.log('Parti politique modifié avec succès !');
 
+                }
+           }else if(choix===2){
+                  if(candidat_trouver){
+                    let nouveau_age =Number(prompt('entrer nouvelle age'))
+                    candidat_trouver.age = nouveau_age
+                    console.log('age modifié avec succès !');
 
+                }
+           }
+    }
+ function supprimer_candidat(){
+        let cin_candidat=prompt('entrer cin tu veux supprimer ')
+        let candidat_trouver=candidats.find(((candidats)=>(candidats.cin===cin_candidat)))
+        if(!candidat_trouver){
+            console.log('cette cin est pas trouver dans la list ')
+        }
+        let index=candidats.findIndex(((candidats)=>(candidats.cin===cin_candidat)))
+        if(candidat_trouver){
+            let verfication=prompt('vous etes sur que tu veux supprimer cette candidat :')
+            if(verfication==='oui' ){
+                candidats.splice(index,1)
+                console.log('candidat est supprimer ')
+            }
+        }
+ }
  
- 
+
 
 while(true){
 console.log(`
