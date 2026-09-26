@@ -252,7 +252,8 @@ function statistiques_election(){
             nombre_Totale_voter()
         case(3):
              Top_3_candidat()
-        
+        case(4):
+            nombre_candidat_politique()
     }
         
 
@@ -300,6 +301,19 @@ function statistiques_election(){
     for(let i = 0; i < 3 && i < candidatsTries.length; i++){
         console.log(`Top ${i+1}: ${candidatsTries[i].nom} - ${candidatsTries[i].electeurs.length} votes`);
     }
+    }
+//4 éme choix nombre de candidats par parti politique. 
+    function nombre_candidat_politique(){
+             compteur= {}
+        for(let i=0; i<candidats.length; i++){
+            let parti=candidats[i].partiPolitique
+            if(compteur[parti]){
+                compteur[parti]= compteur[parti]+1
+            }else{
+                compteur[parti]=1
+            }
+        }
+        console.log(compteur)
     }
 
 
