@@ -232,7 +232,47 @@ function rechercher_candidat(){
 }
 
 
+function statistiques_election(){
+    console.log(`
+               1.afficer le nombre Tolal de candidat.
+               2.Afficher le nombre total de votes exprimés dans toute l'élection. 
+               3.Afficher le Top 3 des candidats ayant le plus de votes. 
+               4.Afficher le nombre de candidats par parti politique. `)
+    let choix= Number(prompt('entrer votre choix : '))
+    switch(choix){
+        case(1):
+            nombre_Total()
+            break
+        case(2):
+            nombre_Totale_voter()
 
+    }
+        
+
+}
+//1 er choix Nombre Totale de candidat
+    function nombre_Total(){
+             let compteur=0
+          for(let i=0; i<candidats.length; i++){
+               compteur++
+            }
+              console.log(`le nombre total de candidat est  ${compteur}`)
+    }
+//2 er choix Nombre Totale de candidat
+    function nombre_Totale_voter(){
+              tableau_numbers=[]
+             for(let i=0; i<candidats.length; i++){
+                 let element = candidats[i].electeurs.length
+                 tableau_numbers.push(element)
+             }
+              let somme =0
+            for(let i=0; i<tableau_numbers.length; i++){
+                 somme += tableau_numbers[i]
+            }
+            console.log(` le nombre total de votes exprimés dans toute l'élection. ${somme} `)
+
+    }
+    
 
 while(true){
 console.log(`
