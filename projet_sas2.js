@@ -124,24 +124,7 @@ const candidats = [
      }else if(choix===1){
           console.log(candidats)
      }else if(choix===2){
-           let tableau_numbers = []
-        for(let i=0; i<candidats.length; i++){
-                 let n ={
-                      cin : candidats[i].cin,
-                      nombre_votes: candidats[i].electeurs.length,
-                 } 
-                    tableau_numbers.push(n)
-        }
-        for(let i = 0; i < tableau_numbers.length; i++){
-           for(let j = 0; j < tableau_numbers.length - 1 - i; j++){
-              if(tableau_numbers[j].nombre_votes < tableau_numbers[j + 1].nombre_votes){
-                   let temp = tableau_numbers[j];
-                   tableau_numbers[j] = tableau_numbers[j + 1];
-                   tableau_numbers[j + 1] = temp;
-            }
-                }
-        }
-                  console.log(tableau_numbers);
+           list_trie()
 
     }else if(choix===3){
         let partie = prompt(`entrer partiPolitique : `)           
@@ -155,6 +138,28 @@ const candidats = [
     }
 }
  }
+        function list_trie(){
+              let tableau_numbers = []
+             for(let i=0; i<candidats.length; i++){
+                 let n ={
+                      cin : candidats[i].cin,
+                      nombre_votes: candidats[i].electeurs.length,
+                 } 
+                    tableau_numbers.push(n)
+             }
+            for(let i = 0; i < tableau_numbers.length; i++){
+             for(let j = 0; j < tableau_numbers.length - 1 - i; j++){
+               if(tableau_numbers[j].nombre_votes < tableau_numbers[j + 1].nombre_votes){
+                   let temp = tableau_numbers[j];
+                   tableau_numbers[j] = tableau_numbers[j + 1];
+                   tableau_numbers[j + 1] = temp;
+                }
+             }
+           }
+                  console.log(tableau_numbers); 
+        }
+
+
  function Voter_candidat(){
     let cinElecteur=prompt('entrer votre cin : ')
     for(let i=0; i<candidats.length; i++){
@@ -245,7 +250,9 @@ function statistiques_election(){
             break
         case(2):
             nombre_Totale_voter()
-
+        case(3):
+             Top_3_candidat()
+        
     }
         
 
@@ -272,7 +279,29 @@ function statistiques_election(){
             console.log(` le nombre total de votes exprimés dans toute l'élection. ${somme} `)
 
     }
-    
+//3 éme choix  Top 3 des candidats ayant le plus de votes. 
+
+    function trierParVotes(){
+        for(let i=0; i<candidats.length;  i++){
+            for(let j=0; j<candidats.length-1-i; i++){
+                if(candidats[j].electeurs.length<candidats[j+1].electeurs.length){
+                    let temp = candidats[j];
+                    candidats[j]=candidats[j+1];
+                    candidats[j+1]=temp;
+                
+                }
+            }
+        }
+        
+        return candidats
+    }
+    function Top_3_candidat(){
+    let candidatsTries = trierParVotes();
+    for(let i = 0; i < 3 && i < candidatsTries.length; i++){
+        console.log(`Top ${i+1}: ${candidatsTries[i].nom} - ${candidatsTries[i].electeurs.length} votes`);
+    }
+    }
+
 
 while(true){
 console.log(`
@@ -324,7 +353,6 @@ console.log(`
     if(choix === 0) break;
 
 }
-
 
 
 
