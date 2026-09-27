@@ -60,7 +60,7 @@ const candidats = [
     cin: "AB890123",
     nom: "Idrissi",
     prenom: "Hamza",
-    partiPolitique: "Parti de la Réforme",
+    partiPolitique: "Parti de la Reforme",
     age: 43,
     electeurs: ["CD888881"]
   },
@@ -68,7 +68,7 @@ const candidats = [
     cin: "AB901234",
     nom: "Berrada",
     prenom: "Imane",
-    partiPolitique: "Parti du Progrès",
+    partiPolitique: "Parti du Progres",
     age: 39,
     electeurs: ["CD999991", "CD999992", "CD999993"]
   },
@@ -76,7 +76,7 @@ const candidats = [
     cin: "AB012345",
     nom: "Naciri",
     prenom: "Karim",
-    partiPolitique: "Indépendant",
+    partiPolitique: "independant",
     age: 50,
     electeurs: ["CD101010", "CD101011", "CD101012", "CD101013", "CD101014"]
   }
@@ -122,41 +122,85 @@ const candidats = [
      if(choix===0){
         console.log('chette choix est indisponible ')
      }else if(choix===1){
-          console.log(candidats)
+
+             afficherCandidats()
+
      }else if(choix===2){
-           list_trie()
+
+             list_trie()
 
     }else if(choix===3){
-        let partie = prompt(`entrer partiPolitique : `)           
-        let candidatsFiltres= candidats.filter(function(candidat){
-          return candidat.partiPolitique === partie;
-    })
-       if(candidatsFiltres.length === 0){
-        console.log('Aucun candidat trouvé pour ce parti.');
-    }else{
-        console.log(candidatsFiltres);
+
+        let partie = prompt(`entrer partiPolitique : `)    
+        let trouver =false;       
+        for(let i=0; i<candidats.length; i++){
+            if(candidats[i].partiPolitique===partie){
+                console.log(`____________________________________________`)
+                console.log(`le candidats avac partie ${partie} est :`)
+                console.log(`nom: ${candidats[i].nom}`)
+                console.log(`prenom: ${candidats[i].prenom}`)
+                 console.log(`cin : ${candidats[i].cin}`)
+                             
+                          trouver =true   
+            }
+        }
+        if (!trouver){
+            console.log(`le partie politique est introuver dans les candidats`)
+        }
     }
-}
- }
+  }
+        function afficherCandidats(){
+           for(let i=0; i<candidats.length; i++){
+              console.log(`___# Candidat ${i+1}___`);
+              console.log(`CIN: ${candidats[i].cin}`);
+              console.log(`Nom: ${candidats[i].nom}`);
+              console.log(`Prénom: ${candidats[i].prenom}`);
+              console.log(`Parti politique: ${candidats[i].partiPolitique}`);
+              console.log(`Âge: ${candidats[i].age}`);
+              console.log(`Nombre de votes: ${candidats[i].electeurs.length}`);
+              console.log('________________________________________________');
+            }       
+        }
+
         function list_trie(){
               let tableau_numbers = []
              for(let i=0; i<candidats.length; i++){
                  let n ={
+                      nom: candidats[i].nom,
+                      prenom:candidats[i].prenom,
                       cin : candidats[i].cin,
-                      nombre_votes: candidats[i].electeurs.length,
+                      partiPolitique: candidats[i].partiPolitique, 
+                      age: candidats[i].age, 
+                      nombre_votes: candidats[i].electeurs.length
                  } 
                     tableau_numbers.push(n)
              }
-            for(let i = 0; i < tableau_numbers.length; i++){
-             for(let j = 0; j < tableau_numbers.length - 1 - i; j++){
-               if(tableau_numbers[j].nombre_votes < tableau_numbers[j + 1].nombre_votes){
-                   let temp = tableau_numbers[j];
-                   tableau_numbers[j] = tableau_numbers[j + 1];
-                   tableau_numbers[j + 1] = temp;
+              function bubbleSort(){
+                for(let i=0; i<tableau_numbers.length-1; i++){
+                    for(let j=0; j<tableau_numbers.length-i-1; j++){
+                        if(tableau_numbers[j].nombre_votes <tableau_numbers[j+1].nombre_votes){
+                            let temp=tableau_numbers[j]
+                            tableau_numbers[j]=tableau_numbers[j+1]
+                            tableau_numbers[j+1]=temp
+                        }
+                    }
+                } 
+                }  
+                bubbleSort()
+                function Afficher_candidats_trie(){
+                    for(let i=0; i<tableau_numbers.length;i++){
+                        console.log(`# candididat : ${i+1}`)
+                        console.log(`CIN: ${tableau_numbers[i].cin}`);
+                        console.log(`Nom: ${tableau_numbers[i].nom}`);
+                        console.log(`Prénom: ${tableau_numbers[i].prenom}`);
+                        console.log(`Parti politique: ${tableau_numbers[i].partiPolitique}`);
+                        console.log(`Âge: ${tableau_numbers[i].age}`);
+                        console.log(`Nombre de votes: ${tableau_numbers[i].nombre_votes}`);
+                        console.log('________________________________________________');
+                    }
                 }
-             }
-           }
-                  console.log(tableau_numbers); 
+                Afficher_candidats_trie()
+            
         }
 
 
